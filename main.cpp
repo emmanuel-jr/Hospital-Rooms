@@ -5,30 +5,30 @@
    Assignment # 5
 
    Problem: A doctor checks in by telling the scheduler his or her name, an examination room number,
-            and a medical specialty code. Each doctor has a favorite room. The scheduler checks to
-            see whether the room is free. If so, it assigns this doctor to the room; if not, it rejects the
-            request with a message, and the doctor can try again to check in. When a doctor checks
-            out, the examination room is freed.
-            A patient checking in gives a name, age, specialist code, and emergency indication. The
-            scheduler tries to match up the patient with a doctor according to a set of rules that are
-            described here. If there is a match, the patient is seen by the assigned doctor. If this
-            doctor is currently seeing a patient, the new patient is queued to see the doctor. If it is the
-            emergency case, the patient should be moved to the front of the waiting list.
+			and a medical specialty code. Each doctor has a favorite room. The scheduler checks to
+			see whether the room is free. If so, it assigns this doctor to the room; if not, it rejects the
+			request with a message, and the doctor can try again to check in. When a doctor checks
+			out, the examination room is freed.
+			A patient checking in gives a name, age, specialist code, and emergency indication. The
+			scheduler tries to match up the patient with a doctor according to a set of rules that are
+			described here. If there is a match, the patient is seen by the assigned doctor. If this
+			doctor is currently seeing a patient, the new patient is queued to see the doctor. If it is the
+			emergency case, the patient should be moved to the front of the waiting list.
 
-    Assumptions: There are l00 examination rooms at the clinic, each with a waiting room attached.
-                 Specialty codes are as follows:
-                 Pediatrics PED
-                 General practice GEN
-                 Internal medicine INT
-                 Cardiology CAR
-                 Surgeon SUR
-                 Obstetrics OBS
-                 Psychiatry PSY
-                 Neurology NEU
-                 Orthopedics ORT
-                 Dermatology DET
-                 Ophthalmology OPT
-                 Ear, Nose, and Throat ENT
+	Assumptions: There are l00 examination rooms at the clinic, each with a waiting room attached.
+				 Specialty codes are as follows:
+				 Pediatrics PED
+				 General practice GEN
+				 Internal medicine INT
+				 Cardiology CAR
+				 Surgeon SUR
+				 Obstetrics OBS
+				 Psychiatry PSY
+				 Neurology NEU
+				 Orthopedics ORT
+				 Dermatology DET
+				 Ophthalmology OPT
+				 Ear, Nose, and Throat ENT
 
 
 */
@@ -38,9 +38,10 @@
 
 #include "roomList.h"
 
-int main() 
+int main()
 {
 	roomList List;
+	UnsortedType rooms;
 	char check;
 	char position;
 
@@ -59,7 +60,7 @@ int main()
 	out << "Welcome to Akai House Clinic" << endl;
 	out << "Where you feel satisfied after coming.\n" << endl;
 
-	while (true) 
+	while (true)
 	{
 		cout << "Kindly identify yourself based on options below" << endl;
 		cout << "D: Doctor" << endl;
@@ -71,29 +72,29 @@ int main()
 		out << "D: Doctor" << endl;
 		out << "P: Patient" << endl;
 		out << position;
-		
+
 
 		cout << "Type I for check - in or O for checkout: ";
-		cin >>check;
+		cin >> check;
 
 		out << "Type I for check - in or O for checkout: " << check;
 
 		if (position == 'D')
 		{
 			if (check == 'I')                                        //doctor checking in
-				List.inDoc();       
+				List.inDoc(rooms);
 
 			else if (check == 'O')                 //doctor checking out
-				List.outDoc();
+				rooms.outDoc();
 		}
 
-		else if (position == 'P') 
-        {  
+		else if (position == 'P')
+		{
 			if (check == 'I')
-				List.inPatient();                                //patient checking in
+				rooms.inPatient();                                //patient checking in
 
 			else if (check == 'O')
-				List.outPatient();             //patient checking out                              
+				rooms.outPatient();             //patient checking out                              
 		}
 
 	}
